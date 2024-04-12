@@ -4,22 +4,21 @@ pipeline{
         gradle 'gradle'
     }
     stages{
-        stage("Clone Code"){
-            steps{
-                git branch: 'master', url: 'https://github.com/kadimasum/java-todo.git'
-            }
+        stage('clone code'){
+           steps{
+               git branch: 'master', url: 'https://github.com/IvyMachogu/java-todo.git'
+           }
+    }
+    stage('gradle code'){
+        steps{
+            sh 'gradle build'
         }
         
-        stage("Build Code"){
-            steps{
-                sh 'gradle build'
-            }
-        }
-        
-        stage("Test Code"){
-            steps{
-                sh 'gradle test'
-            }
-        }
+       }
+       stage('test code'){
+           steps{
+               sh 'gradle test'
+           }
+       }
     }
 }
